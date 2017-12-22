@@ -8,6 +8,7 @@ export class ModalSwitch extends Component {
     return (
       <Switch>
         <Route exact path='/' component={Home}/>
+        <Route path='/podcast/:podId' component={Home}/>
       </Switch>
     )
   }
