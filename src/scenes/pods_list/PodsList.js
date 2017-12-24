@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './pods_list.css';
 import { PodSquare } from "./pod_square/PodSquare";
 import { SearchBar } from '../../components/search_bar/SearchBar';
+import { Header } from '../../components/header/Header';
 import { Grid, Row} from 'react-bootstrap';
 import { podsService } from "../../services/PodsService";
 
@@ -36,22 +37,25 @@ export class PodsList extends Component {
 
   render() {
     return (
-      <div id="pods-container">
-        <SearchBar
-          updateSearch={this.updateSearch.bind(this)}
-          counter={this.state.counter}
-        />
-        <Grid>
-          <Row id="pods-list" >
-            {this.state.pods.map((pod, i) =>
-                <PodSquare
-                  key={pod.id.attributes['im:id']}
-                  pod={pod}
-                  index={i}
-                />
-            )}
-          </Row>
-        </Grid>
+      <div>
+        <Header/>
+        <div id="pods-container">
+          <SearchBar
+            updateSearch={this.updateSearch.bind(this)}
+            counter={this.state.counter}
+          />
+          <Grid>
+            <Row id="pods-list" >
+              {this.state.pods.map((pod, i) =>
+                  <PodSquare
+                    key={pod.id.attributes['im:id']}
+                    pod={pod}
+                    index={i}
+                  />
+              )}
+            </Row>
+          </Grid>
+        </div>
       </div>
     )
   }

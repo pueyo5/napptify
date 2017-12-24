@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './pod_detail.css';
 import { podsService } from "../../services/PodsService";
+import { Header } from "../../components/header/Header";
 import { PodSidebar } from "./pod_sidebar/PodSidebar";
 import { PodContent } from "./pod_content/PodContent";
 import { Episode } from "./episode/Episode";
@@ -34,11 +35,14 @@ export class PodDetail extends Component {
       />;
     }
     return (
-      <div id="details-container">
-        <PodSidebar
-          pod={this.state.pod}
-        />
-        {content}
+      <div>
+        <Header/>
+        <div id="details-container">
+          <PodSidebar
+            pod={this.state.pod}
+          />
+          {content}
+        </div>
       </div>
     )
   }
