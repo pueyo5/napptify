@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './pods_list.css';
 import { PodSquare } from "./pod_square/PodSquare";
-import { SearchBar } from '../../../components/search_bar/SearchBar';
+import { SearchBar } from '../../components/search_bar/SearchBar';
 import { Grid, Row} from 'react-bootstrap';
-import { podsService } from "../../../services/PodsService";
+import { podsService } from "../../services/PodsService";
 
 export class PodsList extends Component {
   constructor(props) {

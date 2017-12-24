@@ -1,0 +1,27 @@
+.sidebar-container a:hover {
+  text-decoration: none; }
+
+.sidebar-container .content {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  margin-top: 10px;
+  padding: 20px 10px; }
+
+.sidebar-container h3 {
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0; }
+
+.sidebar-container p {
+  color: black;
+  font-size: 12px;
+  margin: 0; }
+  .sidebar-container p.bold {
+    font-weight: 700; }
+
+.sidebar-container .img-container {
+  text-align: center; }
+
+.sidebar-container img {
+  width: 100px; }

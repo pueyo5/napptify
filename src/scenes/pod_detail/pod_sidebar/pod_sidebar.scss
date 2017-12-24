@@ -1,0 +1,31 @@
+.sidebar-container {
+  a:hover {
+    text-decoration: none;
+  }
+  .content{
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    margin-top: 10px;
+    padding: 20px 10px;
+  }
+  h3 {
+    color: black;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+  }
+  p {
+    color: black;
+    font-size: 12px;
+    margin: 0;
+    &.bold{
+      font-weight: 700;
+    }
+  }
+  .img-container{
+    text-align: center;
+  }
+  img{
+    width: 100px;
+  }
+}

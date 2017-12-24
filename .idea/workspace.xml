@@ -2,22 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4ad3dddc-7d31-47bf-b01f-27a0b147c1a3" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/PodsList.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pod_square/PodSquare.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pod_square/pod_square.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pod_square/pod_square.scss" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/PodDetail.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/episode/Episode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/episode/episode.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/episode/episode.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_content/PodContent.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_content/pod_content.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_content/pod_content.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_detail.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_detail.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_sidebar/PodSidebar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_sidebar/pod_sidebar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pod_detail/pod_sidebar/pod_sidebar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pods_list/pods_list.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/scenes/pods_list/pods_list.scss" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pods_list.css" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pods_list.scss" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/PodsList.js" afterPath="$PROJECT_DIR$/src/scenes/pods_list/PodsList.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pod_square/PodSquare.js" afterPath="$PROJECT_DIR$/src/scenes/pods_list/pod_square/PodSquare.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pod_square/pod_square.css" afterPath="$PROJECT_DIR$/src/scenes/pods_list/pod_square/pod_square.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/scenes/home/pods_list/pod_square/pod_square.scss" afterPath="$PROJECT_DIR$/src/scenes/pods_list/pod_square/pod_square.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/header/Header.js" afterPath="$PROJECT_DIR$/src/components/header/Header.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/modal_switch/ModalSwitch.js" afterPath="$PROJECT_DIR$/src/components/modal_switch/ModalSwitch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.css" afterPath="$PROJECT_DIR$/src/index.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.scss" afterPath="$PROJECT_DIR$/src/index.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scenes/home/Home.js" afterPath="$PROJECT_DIR$/src/scenes/home/Home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/services/PodsService.js" afterPath="$PROJECT_DIR$/src/services/PodsService.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -190,6 +200,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="napptify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="napptify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="napptify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="napptify" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scenes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pod_detail" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -302,18 +352,18 @@
       <option name="presentableId" value="Default" />
       <updated>1513883978717</updated>
       <workItem from="1513883980433" duration="17784000" />
-      <workItem from="1514024930773" duration="25173000" />
+      <workItem from="1514024930773" duration="25238000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42957000" />
+    <option name="totallyTimeSpent" value="43022000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18506752" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18506752" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977098" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />

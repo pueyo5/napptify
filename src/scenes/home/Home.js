@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from '../../components/header/Header';
-import { PodsList } from "./pods_list/PodsList";
+import { PodsList } from "../pods_list/PodsList";
 
 export class Home extends Component {
   constructor(props) {
@@ -13,7 +12,6 @@ export class Home extends Component {
   render() {
     return (
       <div id="home">
-        <Header/>
         <PodsList/>
       </div>
     );
