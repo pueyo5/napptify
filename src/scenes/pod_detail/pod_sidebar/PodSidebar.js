@@ -17,7 +17,7 @@ export class PodSidebar extends Component {
             <p>by {pod._author}</p>
           </div>
           <p className="bold">Description:</p>
-          <p>{pod._description}</p>
+          <p dangerouslySetInnerHTML={{ __html: pod._description}}></p>
         </div>
       </Col>
     )

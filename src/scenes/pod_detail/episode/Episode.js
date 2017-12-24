@@ -17,7 +17,7 @@ export class Episode extends Component {
       <Col xs={9} sm={9} md={9} lg={9}>
         <div className="main-box">
           <h2>{episode.title[0]}</h2>
-          <p>{episode.description}</p>
+          <p dangerouslySetInnerHTML={{ __html: episode.description}}></p>
         </div>
         <AudioPlayer
           type={this.getAudioParam("type")}
