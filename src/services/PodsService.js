@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {isEmpty} from 'lodash'
+var parseString = require('xml2js').parseString;
 
 class PodsService {
   getPods() {
@@ -40,6 +41,39 @@ class PodsService {
       if (Boolean(resolve)) {
         resolve(res.data.feed.entry);
       }
+    })
+  }
+
+  getPodDetails(data) {
+    return new Promise((resolve, reject) => {
+      this._fetchPodDetails(data.podId, resolve);
+    })
+  }
+
+  _fetchPodDetails(podId, resolve, reject) {
+    const cors_api_url = 'https://cors.io/?';
+    const itunes_api_url = 'https://itunes.apple.com/lookup?id=';
+    axios.get(cors_api_url + itunes_api_url + podId).then(res => {
+      if (Boolean(resolve)) {
+        resolve(res.data.results[0]);
+      }
+    })
+  }
+
+  getPodFeed(data) {
+    return new Promise((resolve, reject) => {
+      this._fetchPodFeed(data.feedUrl, resolve);
+    })
+  }
+
+  _fetchPodFeed(feedUrl, resolve, reject) {
+    const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+    axios.get(cors_api_url + feedUrl, {dataType: 'xml'}).then(res => {
+      parseString(res.data, function (err, result) {
+        if (Boolean(resolve)) {
+          resolve(result.rss.channel[0]);
+        }
+      });
     })
   }
 }
