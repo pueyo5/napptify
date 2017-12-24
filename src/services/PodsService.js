@@ -1,10 +1,11 @@
 import axios from 'axios'
 import {isEmpty} from 'lodash'
+import { moment } from "../helpers/Moment";
 var parseString = require('xml2js').parseString;
 
 class PodsService {
   getPods() {
-    if (this._freshDataPresentLocally()) {
+    if (this._freshPodsPresentLocally()) {
       return this._fetchPodsFromLocalStorage();
     }
     else {
@@ -12,13 +13,10 @@ class PodsService {
     }
   }
 
-  _freshDataPresentLocally() {
+  _freshPodsPresentLocally() {
     let data = JSON.parse(localStorage.getItem('pods'));
     if (isEmpty(data)) return false;
-    let updated_at = new Date(data.updated.label);
-    let date = new Date();
-    date.setDate(date.getDate() - 1);
-    return updated_at.getTime() > date.getTime();
+    return !moment.isExpired(data.updated.label, 1);
   }
 
   _fetchPodsFromAPI() {
@@ -45,33 +43,53 @@ class PodsService {
   }
 
   getPodDetails(data) {
+    if (this._freshPodDetailsPresentLocally({id: data.podId})) {
+      return this._fetchPodDetailsFromLocalStorage({id: data.podId});
+    }
+    else {
+      return this._fetchPodDetailsFromAPI({id: data.podId});
+    }
+  }
+
+  _freshPodDetailsPresentLocally(data) {
+    let pod_details = JSON.parse(localStorage.getItem('pod_details') || '{}');
+    if (isEmpty(data)) return false;
+    let current_pod = pod_details[data.id];
+    if (isEmpty(current_pod)) return false;
+    return !moment.isExpired(data.updated, 1);
+  }
+
+  _fetchPodDetailsFromLocalStorage(data) {
     return new Promise((resolve, reject) => {
-      this._fetchPodDetails(data.podId, resolve);
+      let details = JSON.parse(localStorage.getItem('pod_details') || '{}');
+      resolve(details[data.id]);
     })
   }
 
-  _fetchPodDetails(podId, resolve, reject) {
+  _fetchPodDetailsFromAPI(data, resolve, reject) {
     const cors_api_url = 'https://cors.io/?';
     const itunes_api_url = 'https://itunes.apple.com/lookup?id=';
-    axios.get(cors_api_url + itunes_api_url + podId).then(res => {
-      if (Boolean(resolve)) {
-        resolve(res.data.results[0]);
-      }
-    })
-  }
-
-  getPodFeed(data) {
     return new Promise((resolve, reject) => {
-      this._fetchPodFeed(data.feedUrl, resolve);
+      axios.get(cors_api_url + itunes_api_url + data.id).then(res => {
+        let _data = res.data.results[0];
+        this._fetchPodFeed({id: data.id, url: _data.feedUrl}, resolve);
+      })
     })
   }
 
-  _fetchPodFeed(feedUrl, resolve, reject) {
+  _fetchPodFeed(data, resolve, reject) {
     const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
-    axios.get(cors_api_url + feedUrl, {dataType: 'xml'}).then(res => {
+    let pod_details = JSON.parse(localStorage.getItem('pod_details') || '{}');
+
+    axios.get(cors_api_url + data.url, {dataType: 'xml'}).then(res => {
       parseString(res.data, function (err, result) {
+        let rss = result.rss.channel[0];
+        rss.updated = new Date();
+        rss.id = data.id;
+        pod_details[data.id] = rss;
+        localStorage.setItem('pod_details', JSON.stringify(pod_details));
         if (Boolean(resolve)) {
-          resolve(result.rss.channel[0]);
+          resolve(rss);
         }
       });
     })

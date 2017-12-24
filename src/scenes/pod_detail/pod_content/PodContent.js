@@ -15,15 +15,13 @@ export class PodContent extends Component {
   }
 
   render() {
-    let pod = this.props.pod;
     let rss = this.props.rss;
     let items = rss.item || [];
-    console.log(pod);
     console.log(rss);
     return (
       <Col xs={9} sm={9} md={9} lg={9}>
         <div className="main-box">
-          <h2>Episodes: {pod.trackCount}</h2>
+          <h2>Episodes: {items.length}</h2>
         </div>
         <div className="main-box">
           <Table responsive className="episodes-table">
@@ -38,7 +36,7 @@ export class PodContent extends Component {
             {items.map( (episode, i) =>
               <tr key={i}>
                 <td>
-                  <Link to={`/podcast/${pod.collectionId}/episode/${i}`}>
+                  <Link to={`/podcast/${rss.id}/episode/${i}`}>
                     {episode.title[0]}
                   </Link>
                 </td>

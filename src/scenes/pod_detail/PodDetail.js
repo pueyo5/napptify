@@ -10,7 +10,6 @@ export class PodDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pod: [],
       rss: []
     }
   }
@@ -18,12 +17,7 @@ export class PodDetail extends Component {
   componentDidMount() {
     podsService.getPodDetails({podId: this.props.match.params.podId}).then((details) => {
       this.setState({
-        pod: details
-      })
-      podsService.getPodFeed({feedUrl: details.feedUrl}).then((res) => {
-        this.setState({
-          rss: res
-        })
+        rss: details
       })
     })
   }
@@ -32,7 +26,6 @@ export class PodDetail extends Component {
     let content = null;
     if (isEmpty(this.props.match.params.episodeId)) {
       content = <PodContent
-        pod={this.state.pod}
         rss={this.state.rss}
       />;
     } else {
@@ -43,7 +36,6 @@ export class PodDetail extends Component {
     return (
       <div id="details-container">
         <PodSidebar
-          pod={this.state.pod}
           rss={this.state.rss}
         />
         {content}
