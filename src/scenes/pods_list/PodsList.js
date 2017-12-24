@@ -43,11 +43,12 @@ export class PodsList extends Component {
         />
         <Grid>
           <Row id="pods-list" >
-            {this.state.pods.map(pod =>
-              <PodSquare
-                key={pod.id.attributes['im:id']}
-                pod={pod}
-              />
+            {this.state.pods.map((pod, i) =>
+                <PodSquare
+                  key={pod.id.attributes['im:id']}
+                  pod={pod}
+                  index={i}
+                />
             )}
           </Row>
         </Grid>
