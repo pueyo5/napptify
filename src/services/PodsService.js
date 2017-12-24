@@ -33,11 +33,13 @@ class PodsService {
   }
 
   _fetchPods(resolve, reject) {
-    axios.get("https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json")
+    axios.get("https://itunes.apple.com/us/rss/toppodcasts/limit=120/genre=1310/json")
     .then(res => {
-      localStorage.setItem('pods', JSON.stringify(res.data.feed));
+      let feed = res.data.feed;
+      feed.entry = feed.entry.slice(0, 100);
+      localStorage.setItem('pods', JSON.stringify(feed));
       if (Boolean(resolve)) {
-        resolve(res.data.feed.entry);
+        resolve(feed.entry);
       }
     })
   }
