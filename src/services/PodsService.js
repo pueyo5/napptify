@@ -1,6 +1,7 @@
 import axios from 'axios'
 import {isEmpty} from 'lodash'
 import { moment } from "../helpers/Moment";
+import { Pod } from "../components/pods/Pod"
 var parseString = require('xml2js').parseString;
 
 class PodsService {
@@ -64,7 +65,8 @@ class PodsService {
   _fetchPodDetailsFromLocalStorage(data) {
     return new Promise((resolve, reject) => {
       let details = JSON.parse(localStorage.getItem('pod_details') || '{}');
-      resolve(details[data.id]);
+      const pod = new Pod(details[data.id]);
+      resolve(pod.params());
     })
   }
 
@@ -88,10 +90,11 @@ class PodsService {
         let rss = result.rss.channel[0];
         rss.updated = new Date();
         rss.id = data.id;
-        pod_details[data.id] = rss;
+        let pod = new Pod(rss);
+        pod_details[data.id] = pod.params();
         localStorage.setItem('pod_details', JSON.stringify(pod_details));
         if (Boolean(resolve)) {
-          resolve(rss);
+          resolve(pod.params());
         }
       });
     })
