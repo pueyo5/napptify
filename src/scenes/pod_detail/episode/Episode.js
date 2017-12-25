@@ -12,9 +12,8 @@ export class Episode extends Component {
 
   render() {
     let episode = this.props.episode;
-    console.log(episode);
     return (
-      <Col xs={9} sm={9} md={9} lg={9}>
+      <Col xs={12} sm={9} md={9} lg={9}>
         <div className="main-box">
           <h2>{episode.title[0]}</h2>
           <p dangerouslySetInnerHTML={{ __html: episode.description}}></p>

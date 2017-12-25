@@ -11,8 +11,11 @@ export class PodsList extends Component {
     super(props);
     this.state = {
       pods: [],
-      allPods: []
+      allPods: [],
+      scene_loading: true,
+      loading: true
     }
+    this.updateSearch = this.updateSearch.bind(this)
   }
 
   componentDidMount() {
@@ -20,7 +23,9 @@ export class PodsList extends Component {
       this.setState({
         pods: pods,
         allPods: pods,
-        counter: pods.length
+        counter: pods.length,
+        scene_loading: false,
+        loading: false
       })
     })
   }
@@ -38,10 +43,10 @@ export class PodsList extends Component {
   render() {
     return (
       <div>
-        <Header/>
+        <Header scene_loading={this.state.scene_loading}/>
         <div id="pods-container">
           <SearchBar
-            updateSearch={this.updateSearch.bind(this)}
+            updateSearch={this.updateSearch}
             counter={this.state.counter}
           />
           <Grid>

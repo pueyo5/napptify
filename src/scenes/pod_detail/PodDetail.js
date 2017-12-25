@@ -30,8 +30,9 @@ export class PodDetail extends Component {
         pod={this.state.pod}
       />;
     } else {
+      const episodes = this.state.pod.episodes || [];
       content = <Episode
-        episode={this.state.pod._episodes[+this.props.match.params.episodeId]}
+        episode={episodes[+this.props.match.params.episodeId]}
       />;
     }
     return (

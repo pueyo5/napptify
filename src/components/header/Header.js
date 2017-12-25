@@ -8,6 +8,7 @@ export class Header extends Component {
     return (
       <header>
         <h1><Link to={'/'}>Napptify</Link></h1>
+        {(this.props.scene_loading)?<h1>Loading</h1>:null}
       </header>
     );
   }

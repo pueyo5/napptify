@@ -87,6 +87,7 @@ class PodsService {
 
     axios.get(cors_api_url + data.url, {dataType: 'xml'}).then(res => {
       parseString(res.data, function (err, result) {
+        console.log(result);
         let rss = result.rss.channel[0];
         rss.updated = new Date();
         rss.id = data.id;

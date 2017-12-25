@@ -1,3 +1,6 @@
+.sidebar-container a {
+  color: black; }
+
 .sidebar-container a:hover {
   text-decoration: none; }
 

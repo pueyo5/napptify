@@ -16,9 +16,9 @@ export class PodContent extends Component {
 
   render() {
     let pod = this.props.pod;
-    let episodes = pod._episodes || [];
+    let episodes = pod.episodes || [];
     return (
-      <Col xs={9} sm={9} md={9} lg={9}>
+      <Col xs={12} sm={9} md={9} lg={9}>
         <div className="main-box">
           <h2>Episodes: {episodes.length}</h2>
         </div>

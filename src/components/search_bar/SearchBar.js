@@ -16,7 +16,6 @@ export class SearchBar extends Component {
     <Form inline>
       <FormGroup controlId="formInlineName">
         <ControlLabel className="pods-counter">{this.props.counter}</ControlLabel>
-        {' '}
         <FormControl type="text" placeholder="Filter podcasts..." onChange={this.handleSearch.bind(this)}/>
       </FormGroup>
     </Form>
