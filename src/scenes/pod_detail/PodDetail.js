@@ -17,17 +17,30 @@ export class PodDetail extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.props.scene_loading(true);
+    this.getPodDetails()
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  getPodDetails() {
     podsService.getPodDetails({podId: this.props.match.params.podId})
     .then((details) => {
-      this.props.scene_loading(false);
-      this.setState({
-        pod: details,
-        loading: false
-      })
+      if (this._isMounted) {
+        this.props.scene_loading(false);
+        this.setState({
+          pod: details,
+          loading: false
+        })
+      }
     })
     .catch((error) => {
-      this.props.history.goBack();
+      if (this._isMounted) {
+        this.props.history.goBack();
+      }
     })
   }
 
