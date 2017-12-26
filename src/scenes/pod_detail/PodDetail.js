@@ -17,9 +17,10 @@ export class PodDetail extends Component {
   }
 
   componentDidMount() {
-    this.props.scene_loading(false);
+    this.props.scene_loading(true);
     podsService.getPodDetails({podId: this.props.match.params.podId})
     .then((details) => {
+      this.props.scene_loading(false);
       this.setState({
         pod: details,
         loading: false

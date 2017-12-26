@@ -18,8 +18,9 @@ export class PodsList extends Component {
   }
 
   componentDidMount() {
-    this.props.scene_loading(false);
+    this.props.scene_loading(true);
     podsService.getPods().then((pods) => {
+      this.props.scene_loading(false);
       this.setState({
         pods: pods,
         allPods: pods,
