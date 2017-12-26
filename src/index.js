@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { ModalSwitch } from './components/modal_switch/ModalSwitch';
+import { BrowserRouter } from 'react-router-dom';
+import { Home } from './scenes/home/Home'
 import './index.css';
 
 render(
   <div>
     <BrowserRouter>
-      <Route component={ModalSwitch}/>
+      <Home/>
     </BrowserRouter>
   </div>,
   document.getElementById('root')

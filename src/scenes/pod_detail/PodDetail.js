@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './pod_detail.css';
 import { podsService } from "../../services/PodsService";
-import { Header } from "../../components/header/Header";
 import { PodSidebar } from "./pod_sidebar/PodSidebar";
 import { PodContent } from "./pod_content/PodContent";
+import { Loading } from "../../components/loading/Loading";
 import { Episode } from "./episode/Episode";
 import { isEmpty } from "lodash";
 
@@ -11,19 +11,27 @@ export class PodDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pod: []
+      pod: [],
+      loading: true
     }
   }
 
   componentDidMount() {
+    this.props.scene_loading(false);
     podsService.getPodDetails({podId: this.props.match.params.podId}).then((details) => {
       this.setState({
-        pod: details
+        pod: details,
+        loading: false
       })
     })
   }
 
   render() {
+    if (this.state.loading){
+      return (
+        <Loading/>
+      )
+    }
     let content = null;
     if (isEmpty(this.props.match.params.episodeId)) {
       content = <PodContent
@@ -36,14 +44,11 @@ export class PodDetail extends Component {
       />;
     }
     return (
-      <div>
-        <Header/>
         <div id="details-container">
-          <PodSidebar
-            pod={this.state.pod}
-          />
-          {content}
-        </div>
+        <PodSidebar
+          pod={this.state.pod}
+        />
+        {content}
       </div>
     )
   }
