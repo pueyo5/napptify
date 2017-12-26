@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {isEmpty} from 'lodash'
+import {isEmpty, head} from 'lodash'
 import { moment } from "../helpers/Moment";
 import { Pod } from "../components/pods/Pod"
 var parseString = require('xml2js').parseString;
@@ -22,7 +22,7 @@ class PodsService {
 
   _fetchPodsFromAPI() {
     return new Promise((resolve, reject) => {
-      this._fetchPods(resolve);
+      this._fetchPods(resolve, reject);
     })
   }
 
@@ -43,6 +43,9 @@ class PodsService {
         resolve(feed.entry);
       }
     })
+    .catch( error => {
+      this._handleError(error, reject);
+    });
   }
 
   getPodDetails(data) {
@@ -70,14 +73,18 @@ class PodsService {
     })
   }
 
-  _fetchPodDetailsFromAPI(data, resolve, reject) {
+  _fetchPodDetailsFromAPI(data) {
     const cors_api_url = 'https://cors.io/?';
     const itunes_api_url = 'https://itunes.apple.com/lookup?id=';
     return new Promise((resolve, reject) => {
-      axios.get(cors_api_url + itunes_api_url + data.id).then(res => {
+      axios.get(cors_api_url + itunes_api_url + data.id)
+      .then(res => {
         let _data = res.data.results[0];
-        this._fetchPodFeed({id: data.id, url: _data.feedUrl}, resolve);
+        this._fetchPodFeed({id: data.id, url: _data.feedUrl}, resolve, reject);
       })
+      .catch( error => {
+        this._handleError(error, reject);
+      });
     })
   }
 
@@ -85,21 +92,50 @@ class PodsService {
     const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
     let pod_details = JSON.parse(localStorage.getItem('pod_details') || '{}');
 
-    axios.get(cors_api_url + data.url, {dataType: 'xml'}).then(res => {
-      parseString(res.data, function (err, result) {
-        console.log(result);
-        let rss = result.rss.channel[0];
+    axios.get(cors_api_url + data.url, {dataType: 'xml'})
+    .then(res => {
+      parseString(res.data, (err, result) => {
+        if (!result || !result.rss || !head(result.rss.channel)) {
+          return this._handleError(
+            {message: "Pod with id " + data.id + " has an invalid RSS response format"},
+            reject
+          )
+        }
+        let rss = head(result.rss.channel);
         rss.updated = new Date();
         rss.id = data.id;
         let pod = new Pod(rss);
         pod_details[data.id] = pod.params();
-        localStorage.setItem('pod_details', JSON.stringify(pod_details));
+        if (result) localStorage.setItem('pod_details', JSON.stringify(pod_details));
         if (Boolean(resolve)) {
           resolve(pod.params());
         }
       });
     })
+    .catch( error => {
+      this._handleError(error, reject);
+    });
   }
+
+  _handleError(error, reject){
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.log(error.request);
+    }
+
+    console.log(error.config);
+    console.log('Error', error.message);
+    reject(error.message);
+  }
+
 }
 
 export let podsService = new PodsService();

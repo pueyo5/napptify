@@ -18,11 +18,15 @@ export class PodDetail extends Component {
 
   componentDidMount() {
     this.props.scene_loading(false);
-    podsService.getPodDetails({podId: this.props.match.params.podId}).then((details) => {
+    podsService.getPodDetails({podId: this.props.match.params.podId})
+    .then((details) => {
       this.setState({
         pod: details,
         loading: false
       })
+    })
+    .catch((error) => {
+      this.props.history.goBack();
     })
   }
 
