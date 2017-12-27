@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+THis project was developed with node v9.3.0 and npm 5.6.0
 
 ## Table of Contents
 
